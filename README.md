@@ -66,12 +66,6 @@ Workforce Monitor is a web-based dashboard application designed to streamline at
 5. **Export Reports**
    - Click "Export as PDF" to generate a downloadable report
 
-## 🏢 Company Information
-
-**Organization**: UmbrellaNET Pty Ltd  
-**Location**: Australia/Brisbane  
-**Timezone**: AEST (UTC+10)
-
 ## 🛠️ Technical Stack
 
 - Modern web application built with responsive design
