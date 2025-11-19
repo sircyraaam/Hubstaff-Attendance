@@ -18,41 +18,109 @@ export function AttendanceChart({ employeeData }: AttendanceChartProps) {
   )
 
   const chartData = [
-    { name: "On Time", value: statusCounts["On Time"] || 0, fill: "oklch(0.68 0.19 150)" },
-    { name: "Late", value: statusCounts["Late"] || 0, fill: "oklch(0.78 0.16 85)" },
-    { name: "Absent", value: statusCounts["Not started"] || 0, fill: "oklch(0.62 0.24 25)" },
+    { 
+      name: "On Time", 
+      value: statusCounts["On Time"] || 0,
+      color: "#22c55e",
+    },
+    { 
+      name: "Late", 
+      value: statusCounts["Late"] || 0,
+      color: "#fb923c",
+    },
+    { 
+      name: "Absent", 
+      value: statusCounts["Not started"] || 0,
+      color: "#f87171",
+    },
   ]
 
   return (
-    <Card className="gradient-card border-border/50 hover:border-border transition-all duration-300">
-      <CardHeader>
-        <CardTitle className="text-foreground text-xl">Attendance Distribution</CardTitle>
-        <CardDescription className="text-muted-foreground">Current status breakdown</CardDescription>
+    <Card className="border-border/50 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden h-full">
+      <CardHeader className="pb-4">
+        <CardTitle className="text-foreground text-2xl font-bold tracking-tight">
+          Attendance Distribution
+        </CardTitle>
+        <CardDescription className="text-muted-foreground text-sm">
+          Current status breakdown of all employees
+        </CardDescription>
       </CardHeader>
-      <CardContent>
-        <ResponsiveContainer width="100%" height={300}>
-          <BarChart data={chartData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-            <XAxis dataKey="name" stroke="oklch(0.45 0.02 264)" fontSize={12} tickLine={false} axisLine={false} />
-            <YAxis stroke="oklch(0.45 0.02 264)" fontSize={12} tickLine={false} axisLine={false} />
+      
+      <CardContent className="pt-2 pb-6">
+        <ResponsiveContainer width="100%" height={320}>
+          <BarChart 
+            data={chartData} 
+            margin={{ top: 20, right: 30, left: 10, bottom: 20 }}
+          >
+            <XAxis 
+              dataKey="name" 
+              stroke="currentColor"
+              className="text-muted-foreground"
+              fontSize={13}
+              fontWeight={500}
+              tickLine={false} 
+              axisLine={{ stroke: "currentColor", strokeOpacity: 0.2 }}
+              dy={10}
+            />
+            <YAxis 
+              stroke="currentColor"
+              className="text-muted-foreground"
+              fontSize={12}
+              tickLine={false} 
+              axisLine={{ stroke: "currentColor", strokeOpacity: 0.2 }}
+              dx={-5}
+            />
             <Tooltip
               contentStyle={{
-                backgroundColor: "oklch(0.16 0.01 264)",
-                border: "1px solid oklch(0.28 0.02 264)",
+                backgroundColor: "hsl(var(--popover))",
+                border: "1px solid hsl(var(--border))",
                 borderRadius: "0.75rem",
-                color: "oklch(0.95 0.005 264)",
-                boxShadow: "0 4px 12px oklch(0 0 0 / 0.3)",
+                boxShadow: "0 10px 40px -10px rgba(0, 0, 0, 0.4)",
+                padding: "12px 16px",
               }}
-              cursor={{ fill: "oklch(0.25 0.015 264 / 0.3)" }}
+              itemStyle={{
+                color: "hsl(var(--popover-foreground))",
+                fontWeight: 500,
+              }}
+              labelStyle={{ 
+                color: "hsl(var(--popover-foreground))",
+                fontWeight: 600, 
+                marginBottom: 8,
+              }}
+              cursor={{ fill: "hsl(var(--muted))", opacity: 0.2 }}
             />
-            <Bar dataKey="value" radius={[8, 8, 0, 0]} maxBarSize={80}>
+            <Bar 
+              dataKey="value" 
+              radius={[12, 12, 0, 0]} 
+              maxBarSize={100}
+            >
               {chartData.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={entry.fill} />
+                <Cell 
+                  key={`cell-${index}`} 
+                  fill={entry.color}
+                  opacity={0.9}
+                />
               ))}
             </Bar>
           </BarChart>
         </ResponsiveContainer>
+        
+        {/* Legend */}
+        <div className="flex items-center justify-center gap-6 mt-4 flex-wrap">
+          {chartData.map((entry) => (
+            <div key={entry.name} className="flex items-center gap-2">
+              <div 
+                className="w-3 h-3 rounded-sm" 
+                style={{ 
+                  backgroundColor: entry.color,
+                }}
+              />
+              <span className="text-sm font-medium text-foreground">{entry.name}</span>
+              <span className="text-sm font-bold text-muted-foreground">({entry.value})</span>
+            </div>
+          ))}
+        </div>
       </CardContent>
     </Card>
-    // </CHANGE>
   )
 }

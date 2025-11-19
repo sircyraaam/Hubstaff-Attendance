@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { DashboardHeader } from "@/components/dashboard-header"
 import { KPICards } from "@/components/kpi-cards"
+import { ChartsContainer } from "@/components/charts-container"
 import { AttendanceChart } from "@/components/attendance-chart"
 import { AttendanceTrendChart } from "@/components/attendance-trend-chart"
 import { DepartmentChart } from "@/components/department-chart"
@@ -19,6 +20,10 @@ export default function WorkforceDashboard() {
   const handleDataUpload = (data: EmployeeData[]) => {
     setEmployeeData(data)
     setIsDataLoaded(true)
+  }
+
+  const handleDeleteRow = (index: number) => {
+    setEmployeeData(prevData => prevData.filter((_, i) => i !== index))
   }
 
   return (
@@ -45,7 +50,24 @@ export default function WorkforceDashboard() {
             <div id="dashboard-content" className="space-y-10">
               <KPICards employeeData={employeeData} />
 
-              <EmployeeTable employeeData={employeeData} />
+              {/* Charts Container with Show/Hide Button */}
+              {/* <ChartsContainer
+                title="Analytics & Insights"
+                description="Visualize attendance patterns and trends"
+              >
+                <div className="space-y-8">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <AttendanceChart employeeData={employeeData} />
+                    <DepartmentChart employeeData={employeeData} />
+                  </div>
+
+                  <AttendanceTrendChart employeeData={employeeData} />
+
+                  <LateArrivalChart employeeData={employeeData} />
+                </div>
+              </ChartsContainer> */}
+
+              <EmployeeTable employeeData={employeeData} onDeleteRow={handleDeleteRow} />
             </div>
           </>
         )}
