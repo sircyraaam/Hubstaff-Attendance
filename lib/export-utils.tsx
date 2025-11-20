@@ -150,12 +150,28 @@ export async function exportToPDF(employeeData: EmployeeData[]) {
     pdf.setFont("helvetica", "normal")
     pdf.setFontSize(9)
     pdf.setTextColor(100, 100, 100)
-    const exportDate = new Date().toLocaleDateString("en-US", {
+
+    const now = new Date()
+
+    const formattedDate = now.toLocaleDateString("en-US", {
       year: "numeric",
       month: "long",
       day: "numeric",
     })
-    pdf.text(`Report Generated: ${exportDate}`, pageWidth / 2, yPosition + 7, { align: "center" })
+
+    const formattedTime = now.toLocaleTimeString("en-US", {
+      hour: "numeric",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: true,
+    })
+
+    pdf.text(
+      `Report Generated: ${formattedDate} ${formattedTime}`,
+      pageWidth / 2,
+      yPosition + 7,
+      { align: "center" },
+    )
 
     yPosition += 18
 
