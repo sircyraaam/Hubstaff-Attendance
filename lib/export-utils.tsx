@@ -84,6 +84,8 @@ const computeStatusFromTimes = (employee: EmployeeData): string => {
   const startMinutes = parseTimeToMinutes(employee.startTime as string | null)
   const startDateTime = parseISODateTime(employee.startTime as string | null)
   const actualMinutes = parseDurationToMinutes(employee.actual as string | null)
+  const now = new Date()
+  const nowMinutesOfDay = now.getHours() * 60 + now.getMinutes()
 
   const hasActual = actualMinutes !== null && actualMinutes > 0
   const hasStartTime = startMinutes !== null
@@ -93,6 +95,17 @@ const computeStatusFromTimes = (employee: EmployeeData): string => {
   const ABANDONED_GAP_MINUTES = 120
 
   if (!shiftMinutes) return "Not started"
+  if (nowMinutesOfDay < shiftMinutes) {
+    return "Not started"
+  }
+
+  if (!hasStartTime && !hasActual) {
+    if (shiftEndMinutes !== null && nowMinutesOfDay > shiftEndMinutes) {
+      return "Missed"
+    }
+    return "Not started"
+  }
+
   if (!hasStartTime && !hasActual) return "Missed"
 
   if (hasStartTime) {
