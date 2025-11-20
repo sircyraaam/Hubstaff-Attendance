@@ -100,9 +100,8 @@ const computeStatusFromTimes = (employee: EmployeeData): string => {
   }
 
   if (!hasStartTime && !hasActual) {
-    if (shiftEndMinutes !== null && nowMinutesOfDay > shiftEndMinutes) {
       return "Missed"
-    }
+    }else{
     return "Not started"
   }
 

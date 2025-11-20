@@ -111,21 +111,11 @@ const computeStatusFromTimes = (employee: EmployeeData): string => {
 
   // 3) No Start + No Actual
   if (!hasStartTime && !hasActual) {
-    // If we know the shift end and it's already passed → Missed
-    if (shiftEndMinutes !== null && nowMinutesOfDay > shiftEndMinutes) {
       return "Missed"
-    }
-    // Otherwise we’re still in/around the shift window → Not started
+  }else{
     return "Not started"
   }
 
-  // 4) NEW Missed rule:
-  // Missed = time has started (we have a startTime) but there is no actual work logged
-  if (hasStartTime && !hasActual) {
-    return "Missed"
-  }
-
-  // 5) Logged-in cases with some work
   if (hasStartTime) {
     const diffMinutes = startMinutes! - shiftMinutes
 
