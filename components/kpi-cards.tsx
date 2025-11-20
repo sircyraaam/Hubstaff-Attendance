@@ -49,8 +49,19 @@ const computeStatusFromTimes = (employee: EmployeeData): string => {
   const LATE_THRESHOLD_MINUTES = 120
   const ABANDONED_GAP_MINUTES = 120
 
-  if (!shiftMinutes) return "Not started"
-  if (!hasStartTime && !hasActual) return "Missed"
+  if (!shiftMinutes) {
+    return "Not started"
+  }
+
+  // 2) Shift has not yet started (current time before shift start) → Not started
+  if (nowMinutesOfDay < shiftMinutes) {
+    return "Not started"
+  }
+
+  // 3) No Start + No Actual
+  if (!hasStartTime && !hasActual) {
+      return "Missed"
+  }
 
   if (hasStartTime) {
     const diffMinutes = startMinutes - shiftMinutes
