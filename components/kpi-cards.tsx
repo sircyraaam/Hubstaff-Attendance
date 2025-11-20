@@ -41,6 +41,8 @@ const computeStatusFromTimes = (employee: EmployeeData): string => {
   const startMinutes = parseTimeToMinutes(employee.startTime as string | null)
   const startDateTime = parseISODateTime(employee.startTime as string | null)
   const actualMinutes = parseDurationToMinutes(employee.actual as string | null)
+  const now = new Date()
+  const nowMinutesOfDay = now.getHours() * 60 + now.getMinutes()
 
   const hasActual = actualMinutes !== null && actualMinutes > 0
   const hasStartTime = startMinutes !== null
