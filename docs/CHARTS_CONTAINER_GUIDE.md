@@ -26,13 +26,13 @@ I've created a **unified container** that wraps all your charts with a **single 
 ## 📁 File Structure
 
 ### New Component Created
-```
+\`\`\`
 components/
 └── charts-container.tsx ✨ NEW!
-```
+\`\`\`
 
 ### Updated Components
-```
+\`\`\`
 components/
 ├── attendance-chart.tsx ✅ (Removed individual toggle)
 ├── attendance-trend-chart.tsx ✅ (Removed individual toggle)
@@ -41,14 +41,14 @@ components/
 
 app/
 └── page.tsx ✅ (Now uses ChartsContainer)
-```
+\`\`\`
 
 ---
 
 ## 🎨 Visual Design
 
 ### Container Header
-```
+\`\`\`
 ┌─────────────────────────────────────────────────────┐
 │ 📊  Analytics & Insights            [Hide Charts ▲] │
 │     Visualize attendance patterns and trends        │
@@ -61,22 +61,22 @@ app/
 │  [Chart 4 - Full Width]                            │
 │                                                     │
 └─────────────────────────────────────────────────────┘
-```
+\`\`\`
 
 When clicked:
-```
+\`\`\`
 ┌─────────────────────────────────────────────────────┐
 │ 📊  Analytics & Insights            [Show Charts ▼] │
 │     Visualize attendance patterns and trends        │
 └─────────────────────────────────────────────────────┘
-```
+\`\`\`
 
 ---
 
 ## 💻 Usage
 
 ### In page.tsx
-```tsx
+\`\`\`tsx
 <ChartsContainer
   title="Analytics & Insights"
   description="Visualize attendance patterns and trends"
@@ -90,7 +90,7 @@ When clicked:
     <LateArrivalChart employeeData={employeeData} />
   </div>
 </ChartsContainer>
-```
+\`\`\`
 
 ### Props
 - `title` (optional) - Main heading text (default: "Analytics & Insights")
@@ -102,31 +102,31 @@ When clicked:
 ## 🎨 Customization
 
 ### Change Title & Description
-```tsx
+\`\`\`tsx
 <ChartsContainer
   title="Your Custom Title"
   description="Your custom description"
 >
   {/* Charts */}
 </ChartsContainer>
-```
+\`\`\`
 
 ### Change Icon
 Open `charts-container.tsx` and replace:
-```tsx
+\`\`\`tsx
 <BarChart3 className="h-6 w-6 text-primary" />
-```
+\`\`\`
 
 With your preferred icon:
-```tsx
+\`\`\`tsx
 <TrendingUp className="h-6 w-6 text-primary" />
 <Activity className="h-6 w-6 text-primary" />
 <PieChart className="h-6 w-6 text-primary" />
-```
+\`\`\`
 
 ### Change Button Style
 The button uses `variant="outline"` and `size="lg"`. Modify in `charts-container.tsx`:
-```tsx
+\`\`\`tsx
 // Current
 <Button variant="outline" size="lg">
 
@@ -134,10 +134,10 @@ The button uses `variant="outline"` and `size="lg"`. Modify in `charts-container
 <Button variant="default" size="lg">   // Filled button
 <Button variant="secondary" size="lg">  // Secondary style
 <Button variant="ghost" size="lg">      // Minimal style
-```
+\`\`\`
 
 ### Change Animation Speed
-```tsx
+\`\`\`tsx
 // Current: 500ms
 className="... duration-500"
 
@@ -146,17 +146,17 @@ className="... duration-300"
 
 // Slower
 className="... duration-700"
-```
+\`\`\`
 
 ### Default State
 To start with charts hidden:
-```tsx
+\`\`\`tsx
 // In charts-container.tsx, change:
 const [isVisible, setIsVisible] = useState(true)
 
 // To:
 const [isVisible, setIsVisible] = useState(false)
-```
+\`\`\`
 
 ---
 
@@ -165,12 +165,12 @@ const [isVisible, setIsVisible] = useState(false)
 The **Show/Hide button** is located at the **top-right** of the container header, next to the title.
 
 ### Visual Location
-```
+\`\`\`
 ┌─────────────────────────────────────────┐
 │ 📊 Title                    [Button] ◄── HERE
 │    Description                          │
 └─────────────────────────────────────────┘
-```
+\`\`\`
 
 ---
 
@@ -210,9 +210,9 @@ The **Show/Hide button** is located at the **top-right** of the container header
 ## 🎨 Styling Details
 
 ### Header Gradient
-```css
+\`\`\`css
 bg-gradient-to-r from-primary/10 via-primary/5 to-transparent
-```
+\`\`\`
 
 ### Icon Badge
 - Size: 12x12 (3rem x 3rem)
@@ -234,7 +234,7 @@ bg-gradient-to-r from-primary/10 via-primary/5 to-transparent
 ### Save State to localStorage
 Add this to `charts-container.tsx`:
 
-```tsx
+\`\`\`tsx
 const [isVisible, setIsVisible] = useState(() => {
   const saved = localStorage.getItem('charts-visible')
   return saved !== null ? JSON.parse(saved) : true
@@ -243,25 +243,25 @@ const [isVisible, setIsVisible] = useState(() => {
 useEffect(() => {
   localStorage.setItem('charts-visible', JSON.stringify(isVisible))
 }, [isVisible])
-```
+\`\`\`
 
 Don't forget to import useEffect:
-```tsx
+\`\`\`tsx
 import { useState, useEffect } from "react"
-```
+\`\`\`
 
 ### Add Chart Count
 Show how many charts are inside:
 
-```tsx
+\`\`\`tsx
 // Add this to the description
 <p className="text-sm text-muted-foreground mt-0.5">
   {description} • {React.Children.count(children)} charts
 </p>
-```
+\`\`\`
 
 ### Add Loading State
-```tsx
+\`\`\`tsx
 <ChartsContainer
   title="Analytics & Insights"
   description="Loading charts..."
@@ -269,16 +269,16 @@ Show how many charts are inside:
 >
   {/* Charts */}
 </ChartsContainer>
-```
+\`\`\`
 
 Then in the component:
-```tsx
+\`\`\`tsx
 {isLoading ? (
   <div className="flex items-center justify-center p-12">
     <Loader2 className="h-8 w-8 animate-spin text-primary" />
   </div>
 ) : isVisible && children}
-```
+\`\`\`
 
 ---
 

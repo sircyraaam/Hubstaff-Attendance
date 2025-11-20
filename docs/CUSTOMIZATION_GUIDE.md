@@ -7,7 +7,7 @@ Quick guide for customizing your redesigned charts.
 ## 📏 Adjust Chart Heights
 
 ### Current Heights
-```tsx
+\`\`\`tsx
 // Attendance Distribution
 <ResponsiveContainer width="100%" height={320}>
 
@@ -19,14 +19,14 @@ Quick guide for customizing your redesigned charts.
 
 // Late Arrivals
 <ResponsiveContainer width="100%" height={400}>
-```
+\`\`\`
 
 ### To Change
 Simply modify the `height` prop:
-```tsx
+\`\`\`tsx
 <ResponsiveContainer width="100%" height={500}> // Larger
 <ResponsiveContainer width="100%" height={250}> // Smaller
-```
+\`\`\`
 
 ---
 
@@ -36,7 +36,7 @@ Simply modify the `height` prop:
 Find the color definitions in each file:
 
 **attendance-chart.tsx**
-```tsx
+\`\`\`tsx
 const chartData = [
   { 
     name: "On Time", 
@@ -45,20 +45,20 @@ const chartData = [
   },
   // ...
 ]
-```
+\`\`\`
 
 **department-chart.tsx**
-```tsx
+\`\`\`tsx
 const COLORS = [
   "#6366f1", // Your custom color 1
   "#8b5cf6", // Your custom color 2
   // Add or remove colors as needed
 ]
-```
+\`\`\`
 
 ### Option 2: Create a Shared Color Config
 Create `lib/chart-colors.ts`:
-```tsx
+\`\`\`tsx
 export const CHART_COLORS = {
   success: { light: "#10b981", dark: "#34d399" },
   warning: { light: "#f59e0b", dark: "#fbbf24" },
@@ -70,12 +70,12 @@ export const DEPARTMENT_COLORS = [
   "#6366f1", "#8b5cf6", "#ec4899", "#14b8a6",
   "#f59e0b", "#06b6d4", "#10b981", "#ef4444",
 ]
-```
+\`\`\`
 
 Then import in your chart files:
-```tsx
+\`\`\`tsx
 import { CHART_COLORS, DEPARTMENT_COLORS } from "@/lib/chart-colors"
-```
+\`\`\`
 
 ---
 
@@ -83,13 +83,13 @@ import { CHART_COLORS, DEPARTMENT_COLORS } from "@/lib/chart-colors"
 
 By default, all charts are expanded. To change:
 
-```tsx
+\`\`\`tsx
 // Current (expanded by default)
 const [isExpanded, setIsExpanded] = useState(true)
 
 // Collapsed by default
 const [isExpanded, setIsExpanded] = useState(false)
-```
+\`\`\`
 
 ---
 
@@ -97,7 +97,7 @@ const [isExpanded, setIsExpanded] = useState(false)
 
 To remember the user's preference:
 
-```tsx
+\`\`\`tsx
 const [isExpanded, setIsExpanded] = useState(() => {
   const saved = localStorage.getItem('attendance-chart-expanded')
   return saved !== null ? JSON.parse(saved) : true
@@ -106,19 +106,19 @@ const [isExpanded, setIsExpanded] = useState(() => {
 useEffect(() => {
   localStorage.setItem('attendance-chart-expanded', JSON.stringify(isExpanded))
 }, [isExpanded])
-```
+\`\`\`
 
 Add at the top:
-```tsx
+\`\`\`tsx
 import { useEffect } from "react"
-```
+\`\`\`
 
 ---
 
 ## 📊 Adjust Bar Widths
 
 ### Bar Charts
-```tsx
+\`\`\`tsx
 // Current
 <Bar dataKey="value" radius={[12, 12, 0, 0]} maxBarSize={100}>
 
@@ -127,14 +127,14 @@ import { useEffect } from "react"
 
 // Thinner bars
 <Bar dataKey="value" radius={[12, 12, 0, 0]} maxBarSize={60}>
-```
+\`\`\`
 
 ---
 
 ## 🎯 Change Pie Chart Size
 
 **department-chart.tsx**
-```tsx
+\`\`\`tsx
 // Current
 <Pie
   outerRadius={130}  // Outer size
@@ -150,14 +150,14 @@ import { useEffect } from "react"
 
 // Solid pie (no hole)
 <Pie outerRadius={130} innerRadius={0}>
-```
+\`\`\`
 
 ---
 
 ## 📈 Line Thickness & Dot Size
 
 **attendance-trend-chart.tsx**
-```tsx
+\`\`\`tsx
 // Current
 <Line 
   type="monotone" 
@@ -176,14 +176,14 @@ import { useEffect } from "react"
 
 // No dots
 <Line dot={false} />
-```
+\`\`\`
 
 ---
 
 ## 🔢 Change Top N Late Arrivals
 
 **late-arrival-chart.tsx**
-```tsx
+\`\`\`tsx
 // Current - Top 10
 .slice(0, 10)
 
@@ -195,14 +195,14 @@ import { useEffect } from "react"
 
 // All late employees (remove slice)
 // .slice(0, 10) <- comment out or remove
-```
+\`\`\`
 
 ---
 
 ## 🎨 Customize Tooltip Styles
 
 Find the Tooltip component and adjust:
-```tsx
+\`\`\`tsx
 <Tooltip
   contentStyle={{
     backgroundColor: "hsl(var(--popover))",
@@ -223,7 +223,7 @@ borderRadius: "0.25rem"
 
 // Bigger text
 fontSize: "16px"
-```
+\`\`\`
 
 ---
 
@@ -234,13 +234,13 @@ Simply remove the `<Legend />` component or custom legend div.
 
 ### Reposition Legend
 For recharts Legend component:
-```tsx
+\`\`\`tsx
 <Legend 
   verticalAlign="top"    // top, middle, bottom
   align="center"         // left, center, right
   height={36}
 />
-```
+\`\`\`
 
 For custom legends (already implemented):
 Just move the div to wherever you want in the component.
@@ -249,7 +249,7 @@ Just move the div to wherever you want in the component.
 
 ## 📐 Adjust Margins
 
-```tsx
+\`\`\`tsx
 // Current
 margin={{ top: 20, right: 30, left: 10, bottom: 20 }}
 
@@ -258,14 +258,14 @@ margin={{ top: 20, right: 50, left: 10, bottom: 20 }}
 
 // More space on left (for Y-axis labels)
 margin={{ top: 20, right: 30, left: 30, bottom: 20 }}
-```
+\`\`\`
 
 ---
 
 ## 🎭 Animation Speed
 
 The collapse/expand animation:
-```css
+\`\`\`css
 // Current in components
 className="... animate-in fade-in-0 slide-in-from-top-2 duration-300"
 
@@ -277,7 +277,7 @@ duration-150
 
 // No animation
 // Remove the animate-in classes
-```
+\`\`\`
 
 ---
 
@@ -286,28 +286,28 @@ duration-150
 If you want specific colors regardless of theme:
 
 ### Current (Theme-aware)
-```tsx
+\`\`\`tsx
 lightColor: "#10b981",
 darkColor: "#34d399",
-```
+\`\`\`
 
 ### Force Single Color
-```tsx
+\`\`\`tsx
 lightColor: "#10b981",
 darkColor: "#10b981", // Same color for both themes
-```
+\`\`\`
 
 Or directly in the fill:
-```tsx
+\`\`\`tsx
 <Cell fill="#10b981" /> // Always green
-```
+\`\`\`
 
 ---
 
 ## 🔤 Font Sizes
 
 ### Axis Labels
-```tsx
+\`\`\`tsx
 // Current
 <XAxis fontSize={13} />
 <YAxis fontSize={12} />
@@ -315,10 +315,10 @@ Or directly in the fill:
 // Bigger
 <XAxis fontSize={14} />
 <YAxis fontSize={13} />
-```
+\`\`\`
 
 ### Titles
-```tsx
+\`\`\`tsx
 // Current
 <CardTitle className="... text-2xl ...">
 
@@ -327,7 +327,7 @@ Or directly in the fill:
 
 // Smaller
 <CardTitle className="... text-xl ...">
-```
+\`\`\`
 
 ---
 
@@ -335,16 +335,16 @@ Or directly in the fill:
 
 For a more decorative look:
 
-```tsx
+\`\`\`tsx
 <Card className="... bg-gradient-to-br from-background to-muted/20">
-```
+\`\`\`
 
 Or with patterns:
-```tsx
+\`\`\`tsx
 <Card style={{
   backgroundImage: `url("data:image/svg+xml,%3Csvg width='20' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%239C92AC' fill-opacity='0.05'%3E%3Cpath d='M0 0h20v20H0z'/%3E%3C/g%3E%3C/svg%3E")`,
 }}>
-```
+\`\`\`
 
 ---
 

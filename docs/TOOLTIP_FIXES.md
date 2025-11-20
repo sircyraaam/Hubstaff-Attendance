@@ -14,7 +14,7 @@ Added explicit color styling to ALL chart tooltips using CSS custom properties t
 
 ### Fixed Properties
 
-```tsx
+\`\`\`tsx
 // Added to all Tooltip components:
 itemStyle={{
   color: "hsl(var(--popover-foreground))",  // ← Explicitly set text color
@@ -25,7 +25,7 @@ labelStyle={{
   fontWeight: 600, 
   marginBottom: 8,
 }}
-```
+\`\`\`
 
 ---
 
@@ -35,15 +35,15 @@ labelStyle={{
 **File**: `components/attendance-chart.tsx`
 
 **Before**: 
-```tsx
+\`\`\`tsx
 <Tooltip
   contentStyle={{...}}
   labelStyle={{ fontWeight: 600, marginBottom: 4 }}  // ❌ No color
 />
-```
+\`\`\`
 
 **After**:
-```tsx
+\`\`\`tsx
 <Tooltip
   contentStyle={{...}}
   itemStyle={{
@@ -56,7 +56,7 @@ labelStyle={{
     marginBottom: 8,
   }}
 />
-```
+\`\`\`
 
 ---
 
@@ -91,7 +91,7 @@ labelStyle={{
 
 ### CSS Custom Properties (Theme-Aware)
 
-```css
+\`\`\`css
 /* Light Mode */
 --popover: oklch(1 0 0)                    /* White background */
 --popover-foreground: oklch(0.12 0.01 270) /* Dark text */
@@ -99,7 +99,7 @@ labelStyle={{
 /* Dark Mode */
 --popover: oklch(0.15 0.01 270)            /* Dark background */
 --popover-foreground: oklch(0.98 0.001 270) /* Light text ✨ */
-```
+\`\`\`
 
 ### Why This Works
 
@@ -116,7 +116,7 @@ labelStyle={{
 Each tooltip now has 3 styled parts:
 
 ### 1. Container (`contentStyle`)
-```tsx
+\`\`\`tsx
 contentStyle={{
   backgroundColor: "hsl(var(--popover))",        // Theme background
   border: "1px solid hsl(var(--border))",        // Theme border
@@ -124,24 +124,24 @@ contentStyle={{
   boxShadow: "0 10px 40px -10px rgba(0,0,0,0.4)", // Depth
   padding: "12px 16px",                          // Space
 }}
-```
+\`\`\`
 
 ### 2. Label (`labelStyle`) - Title/Header
-```tsx
+\`\`\`tsx
 labelStyle={{ 
   color: "hsl(var(--popover-foreground))",  // ✅ FIXED - Now bright in dark mode
   fontWeight: 600,                          // Bold
   marginBottom: 8,                          // Space below
 }}
-```
+\`\`\`
 
 ### 3. Items (`itemStyle`) - Data Values
-```tsx
+\`\`\`tsx
 itemStyle={{
   color: "hsl(var(--popover-foreground))",  // ✅ FIXED - Now bright in dark mode
   fontWeight: 500,                          // Medium weight
 }}
-```
+\`\`\`
 
 ---
 
@@ -183,23 +183,23 @@ itemStyle={{
 
 ### Before ❌
 
-```
+\`\`\`
 ┌─────────────────────────┐
 │ On Time: 19             │  ← Black text (invisible!)
 │ Value: 19               │  ← Black text (invisible!)
 └─────────────────────────┘
    Dark background
-```
+\`\`\`
 
 ### After ✅
 
-```
+\`\`\`
 ┌─────────────────────────┐
 │ On Time: 19             │  ← White text (clear!)
 │ Value: 19               │  ← White text (clear!)
 └─────────────────────────┘
    Dark background
-```
+\`\`\`
 
 ---
 
@@ -220,7 +220,7 @@ itemStyle={{
 
 Recharts tooltips support these style props:
 
-```tsx
+\`\`\`tsx
 <Tooltip
   // Container styling
   contentStyle={{ ... }}
@@ -237,7 +237,7 @@ Recharts tooltips support these style props:
   // Cursor styling
   cursor={{ ... }}
 />
-```
+\`\`\`
 
 **Critical**: `itemStyle` and `labelStyle` need explicit `color` property, otherwise Recharts uses its default (black).
 
@@ -247,7 +247,7 @@ Recharts tooltips support these style props:
 
 When tooltip is displayed:
 
-```css
+\`\`\`css
 /* These CSS variables resolve to: */
 
 Light Mode:
@@ -257,7 +257,7 @@ Light Mode:
 Dark Mode:
 - popover: dark (#1a1a23)
 - popover-foreground: light (#fafafa) ← Perfect for dark bg
-```
+\`\`\`
 
 **Contrast Ratios** (WCAG AAA):
 - Light mode: ~16:1 ✅
@@ -270,10 +270,10 @@ Dark Mode:
 ### If tooltips still show black text:
 
 1. **Clear Cache & Reload**
-   ```
+   \`\`\`
    Ctrl + Shift + R (Windows/Linux)
    Cmd + Shift + R (Mac)
-   ```
+   \`\`\`
 
 2. **Inspect Element**
    - Right-click tooltip when visible
@@ -335,7 +335,7 @@ While fixing tooltips, also ensured:
 
 ### Always Set Explicit Colors for Tooltips
 
-```tsx
+\`\`\`tsx
 // ❌ DON'T - Relies on defaults
 <Tooltip
   contentStyle={{ backgroundColor: "..." }}
@@ -355,7 +355,7 @@ While fixing tooltips, also ensured:
     fontWeight: 600 
   }}
 />
-```
+\`\`\`
 
 ### Use CSS Custom Properties
 
@@ -372,7 +372,7 @@ While fixing tooltips, also ensured:
 
 Use this for any new Recharts tooltips:
 
-```tsx
+\`\`\`tsx
 <Tooltip
   contentStyle={{
     backgroundColor: "hsl(var(--popover))",
@@ -391,7 +391,7 @@ Use this for any new Recharts tooltips:
     marginBottom: 8,
   }}
 />
-```
+\`\`\`
 
 ---
 

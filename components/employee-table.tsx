@@ -92,70 +92,81 @@ const computeStatusFromTimes = (employee: EmployeeData): string => {
   const hasActual = actualMinutes !== null && actualMinutes > 0
   const hasStartTime = startMinutes !== null
 
+  const now = new Date()
+  const nowMinutesOfDay = now.getHours() * 60 + now.getMinutes()
+
   const GRACE_MINUTES = 5
   const LATE_THRESHOLD_MINUTES = 120 // 2 hours
   const ABANDONED_GAP_MINUTES = 120 // 2 hours behind where they "should" be
 
-  // 1) Not started: no shift scheduled or no meaningful data
+  // 1) No shift scheduled at all → treat as Not started
   if (!shiftMinutes) {
     return "Not started"
   }
 
-  // 2) Missed/Absent: never clocked in and no work logged
+  // 2) Shift has not yet started (current time before shift start) → Not started
+  if (nowMinutesOfDay < shiftMinutes) {
+    return "Not started"
+  }
+
+  // 3) No Start + No Actual
   if (!hasStartTime && !hasActual) {
+    // If we know the shift end and it's already passed → Missed
+    if (shiftEndMinutes !== null && nowMinutesOfDay > shiftEndMinutes) {
+      return "Missed"
+    }
+    // Otherwise we’re still in/around the shift window → Not started
+    return "Not started"
+  }
+
+  // 4) NEW Missed rule:
+  // Missed = time has started (we have a startTime) but there is no actual work logged
+  if (hasStartTime && !hasActual) {
     return "Missed"
   }
 
-  // 3) Logged in cases
+  // 5) Logged-in cases with some work
   if (hasStartTime) {
-    const diffMinutes = startMinutes - shiftMinutes
+    const diffMinutes = startMinutes! - shiftMinutes
 
-    // 3a) Abandoned:
-    // Only check if:
-    //  - we have actual work
-    //  - we know when they started
-    //  - we know shift end
-    //  - current time is still before shift end
+    // 5a) Abandoned:
+    // Has actual work, has start time, knows shift end, and we're still in the shift window
     if (hasActual && startDateTime && shiftEndMinutes !== null) {
-      const now = new Date()
-      const nowMinutesOfDay = now.getHours() * 60 + now.getMinutes()
-
-      // Only apply abandoned rule if we're still within the shift window
       if (nowMinutesOfDay < shiftEndMinutes) {
         const minutesSinceStart =
           (now.getTime() - startDateTime.getTime()) / (1000 * 60)
 
         const minutesShortfall = minutesSinceStart - actualMinutes!
 
-        // If they are 2+ hours behind where they should be → Abandoned
         if (minutesShortfall >= ABANDONED_GAP_MINUTES) {
           return "Abandoned"
         }
       }
     }
 
-    // 3b) Missed: logged in more than 2 hours late
+    // 5b) Logged in more than 2 hours late → Missed
     if (diffMinutes > LATE_THRESHOLD_MINUTES) {
       return "Missed"
     }
 
-    // 3c) Late: logged in 5 minutes to 2 hours late
+    // 5c) Late: 5 minutes to 2 hours after shift start
     if (diffMinutes > GRACE_MINUTES && diffMinutes <= LATE_THRESHOLD_MINUTES) {
       return "Late"
     }
 
-    // 3d) On Time: logged in within 5 minutes of shift start
+    // 5d) On Time: within 5-minute grace
     return "On Time"
   }
 
-  // 4) Edge case: has work logged but no start time
+  // 6) Edge case: has work logged but no start time
   if (hasActual && !hasStartTime) {
     return "On Time"
   }
 
-  // 5) Default fallback
+  // 7) Fallback
   return "Not started"
 }
+
 
 const getStatusBadge = (status: string) => {
   const normalizedStatus = status.trim()
