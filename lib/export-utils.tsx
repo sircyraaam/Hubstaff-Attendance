@@ -175,7 +175,7 @@ export async function exportToPDF(employeeData: EmployeeData[]) {
     const kpiBoxHeight = 16
     const kpiPadding = 2
     const kpiData = [
-      { label: "Total Employees", value: totalEmployees, color: COLOR_PALETTE.gray },
+      { label: "Total Staff", value: totalEmployees, color: COLOR_PALETTE.gray },
       { label: "On Time", value: onTimeCount, color: COLOR_PALETTE.lightGreen },
       { label: "Late", value: lateCount, color: COLOR_PALETTE.lightOrange },
       { label: "Absent", value: absentCount, color: COLOR_PALETTE.red },
