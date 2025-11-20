@@ -112,8 +112,6 @@ const computeStatusFromTimes = (employee: EmployeeData): string => {
   // 3) No Start + No Actual
   if (!hasStartTime && !hasActual) {
       return "Missed"
-  }else{
-    return "Not started"
   }
 
   if (hasStartTime) {
