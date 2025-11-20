@@ -232,7 +232,7 @@ export function EmployeeTable({ employeeData, onDeleteRow }: EmployeeTableProps)
     <Card className="border-border/50 mt-8 shadow-lg dark:shadow-black/20">
       <CardHeader className="pb-6">
         <CardTitle className="text-2xl font-bold text-foreground mb-4">
-          Employee Details
+          Staff Details
         </CardTitle>
         <div className="relative">
           <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />

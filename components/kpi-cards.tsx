@@ -109,7 +109,7 @@ export function KPICards({ employeeData }: KPICardsProps) {
 
   const kpis = [
     {
-      title: "Total Employees",
+      title: "Total Staffs",
       value: totalEmployees,
       icon: Users,
       gradientStyle: "linear-gradient(135deg, rgb(93, 179, 251) 0%, rgba(93, 179, 251, 0.6) 100%)",
@@ -126,7 +126,7 @@ export function KPICards({ employeeData }: KPICardsProps) {
     {
       title: "Late Arrivals",
       value: lateCount,
-      subtitle: `${lateCount} employees`,
+      subtitle: `${lateCount} staffs`,
       icon: Clock,
       gradientStyle: "linear-gradient(135deg, rgb(251, 146, 60) 0%, rgba(251, 146, 60, 0.6) 100%)",
       bgColor: "rgba(251, 146, 60, 0.1)",
