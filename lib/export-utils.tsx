@@ -229,7 +229,14 @@ export async function exportToPDF(employeeData: EmployeeData[]) {
     // Table header
     const columns = ["Staff", "Status", "Date", "Shift Start", "Actual Start", "Late"]
     const availableWidth = pageWidth - 20
-    const columnWidths = Array(columns.length).fill(availableWidth / columns.length)
+    const columnWidths = [
+      availableWidth * 0.26, // Staff - widest
+      availableWidth * 0.12, // Status - short label
+      availableWidth * 0.16, // Date
+      availableWidth * 0.16, // Shift Start
+      availableWidth * 0.16, // Actual Start
+      availableWidth * 0.14, // Late
+    ]
 
     pdf.setFillColor(COLOR_PALETTE.blueHeader.r, COLOR_PALETTE.blueHeader.g, COLOR_PALETTE.blueHeader.b)
     pdf.rect(10, yPosition, availableWidth, 7, "F")
