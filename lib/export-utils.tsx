@@ -92,7 +92,7 @@ const computeStatusFromTimes = (employee: EmployeeData): string => {
 
   const GRACE_MINUTES = 5
   const LATE_THRESHOLD_MINUTES = 240
-  const ABANDONED_GAP_MINUTES = 120
+  const ABANDONED_GAP_MINUTES = 240
 
   if (!shiftMinutes) return "Not started"
   if (nowMinutesOfDay < shiftMinutes) {
@@ -182,7 +182,7 @@ export async function exportToPDF(employeeData: EmployeeData[]) {
     const absentCount = employeeData.filter(
       (emp) => {
         const status = computeStatusFromTimes(emp)
-        return status === "Missed" || status === "Abandoned"
+        return status === "Missed"
       }
     ).length
     const notStartedCount = employeeData.filter((emp) => computeStatusFromTimes(emp) === "Not started").length

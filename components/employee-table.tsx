@@ -70,13 +70,13 @@ const parseDurationToMinutes = (value?: string | null): number | null => {
  *    - no shift scheduled or no data available
  * - Missed/Absent:
  *    - no Start time AND no Actual (never clocked in)
- *    - OR Late by more than 2 hours
+ *    - OR Late by more than 4 hours
  * - Abandoned:
  *    - has Start time (logged in)
  *    - Calculate: Expected Duration = NOW - Start Time
- *    - If Actual Work < (Expected Duration - 2 hours) → Abandoned
+ *    - If Actual Work < (Expected Duration - 4 hours) → Abandoned
  * - Late:
- *    - Start time is 5 minutes to 2 hours after shift start
+ *    - Start time is 5 minutes to 4 hours after shift start
  * - On Time:
  *    - Started within 5 minutes of shift start
  */
@@ -97,7 +97,7 @@ const computeStatusFromTimes = (employee: EmployeeData): string => {
 
   const GRACE_MINUTES = 5
   const LATE_THRESHOLD_MINUTES = 240 // 4 hours
-  const ABANDONED_GAP_MINUTES = 120 // 2 hours behind where they "should" be
+  const ABANDONED_GAP_MINUTES = 240 // 4 hours behind where they "should" be
 
   // 1) No shift scheduled at all → treat as Not started
   if (!shiftMinutes) {
@@ -132,12 +132,12 @@ const computeStatusFromTimes = (employee: EmployeeData): string => {
       }
     }
 
-    // 5b) Logged in more than 2 hours late → Missed
+    // 5b) Logged in more than 4 hours late → Missed
     if (diffMinutes > LATE_THRESHOLD_MINUTES) {
       return "Missed"
     }
 
-    // 5c) Late: 5 minutes to 2 hours after shift start
+    // 5c) Late: 5 minutes to 4 hours after shift start
     if (diffMinutes > GRACE_MINUTES && diffMinutes <= LATE_THRESHOLD_MINUTES) {
       return "Late"
     }

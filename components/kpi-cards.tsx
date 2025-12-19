@@ -49,7 +49,7 @@ const computeStatusFromTimes = (employee: EmployeeData): string => {
 
   const GRACE_MINUTES = 5
   const LATE_THRESHOLD_MINUTES = 240
-  const ABANDONED_GAP_MINUTES = 120
+  const ABANDONED_GAP_MINUTES = 240
 
   if (!shiftMinutes) {
     return "Not started"
@@ -99,7 +99,7 @@ export function KPICards({ employeeData }: KPICardsProps) {
   
   const onTimeCount = employeeStatuses.filter((status) => status === "On Time").length
   const lateCount = employeeStatuses.filter((status) => status === "Late").length
-  const absentCount = employeeStatuses.filter((status) => status === "Missed" || status === "Abandoned").length
+  const absentCount = employeeStatuses.filter((status) => status === "Missed").length
   const notStartedCount = employeeStatuses.filter((status) => status === "Not started").length
 
   console.log("[v0] KPI Debug - Total:", totalEmployees, "On Time:", onTimeCount, "Late:", lateCount, "Absent:", absentCount, "Not Started:", notStartedCount)
