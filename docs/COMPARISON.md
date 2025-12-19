@@ -119,47 +119,47 @@
 ## 📐 Layout Changes
 
 ### Card Headers
-\`\`\`diff
+```diff
 - <CardTitle className="text-foreground text-xl">
 + <CardTitle className="text-foreground text-2xl font-bold tracking-tight">
 
 - <CardDescription className="text-muted-foreground">
 + <CardDescription className="text-muted-foreground text-sm">
-\`\`\`
+```
 
 ### Card Styling
-\`\`\`diff
+```diff
 - className="border-border"
 + className="border-border/50 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
-\`\`\`
+```
 
 ### Spacing
-\`\`\`diff
+```diff
 - <CardHeader>
 + <CardHeader className="pb-4">
 
 - <CardContent>
 + <CardContent className="pt-2 pb-6 animate-in fade-in-0 slide-in-from-top-2 duration-300">
-\`\`\`
+```
 
 ---
 
 ## 🎯 Color Palette Changes
 
 ### Before (oklch)
-\`\`\`css
+```css
 oklch(0.68 0.19 150)  /* Success */
 oklch(0.78 0.16 85)   /* Warning */
 oklch(0.62 0.24 25)   /* Destructive */
-\`\`\`
+```
 
 ### After (hex)
-\`\`\`css
+```css
 #10b981 / #34d399  /* Emerald - Success */
 #f59e0b / #fbbf24  /* Amber - Warning */
 #ef4444 / #f87171  /* Red - Error */
 #f97316 / #fb923c  /* Orange - Mild */
-\`\`\`
+```
 
 **Why?** Hex colors are:
 - More universally understood

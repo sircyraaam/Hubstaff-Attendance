@@ -96,7 +96,7 @@ const computeStatusFromTimes = (employee: EmployeeData): string => {
   const nowMinutesOfDay = now.getHours() * 60 + now.getMinutes()
 
   const GRACE_MINUTES = 5
-  const LATE_THRESHOLD_MINUTES = 120 // 2 hours
+  const LATE_THRESHOLD_MINUTES = 240 // 4 hours
   const ABANDONED_GAP_MINUTES = 120 // 2 hours behind where they "should" be
 
   // 1) No shift scheduled at all → treat as Not started

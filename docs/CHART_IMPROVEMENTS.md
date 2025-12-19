@@ -141,7 +141,7 @@ The charts will automatically work with your existing data structure. Each chart
 ## 📝 Technical Details
 
 ### Colors Used (Hex)
-\`\`\`
+```
 Success/On Time: #10b981 (light) / #34d399 (dark)
 Warning/Late: #f59e0b (light) / #fbbf24 (dark)
 Error/Absent: #ef4444 (light) / #f87171 (dark)
@@ -151,7 +151,7 @@ Violet: #8b5cf6
 Pink: #ec4899
 Teal: #14b8a6
 Cyan: #06b6d4
-\`\`\`
+```
 
 ### Dependencies
 - All using existing `recharts` components

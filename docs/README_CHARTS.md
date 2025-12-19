@@ -75,13 +75,13 @@ All changes are **drop-in replacements**. Your existing code will work immediate
 6. **Glow effects** on important data points
 
 ### Try It Out
-\`\`\`bash
+```bash
 npm run dev
 # or
 yarn dev
 # or
 pnpm dev
-\`\`\`
+```
 
 Then visit your dashboard and **switch to dark mode** to see the beautiful new colors! 🌙
 
@@ -170,7 +170,7 @@ See [CUSTOMIZATION_GUIDE.md](./CUSTOMIZATION_GUIDE.md) for:
 - And much more!
 
 ### Common Tweaks
-\`\`\`tsx
+```tsx
 // Change chart height
 <ResponsiveContainer height={400}>
 
@@ -179,7 +179,7 @@ const CUSTOM_COLOR = "#your-color"
 
 // Start collapsed
 const [isExpanded, setIsExpanded] = useState(false)
-\`\`\`
+```
 
 ---
 
@@ -211,16 +211,16 @@ All animations use CSS transforms and opacity for 60fps performance.
 ## 📦 What's Included
 
 ### Updated Files
-\`\`\`
+```
 components/
 ├── attendance-chart.tsx ✨ (Dark mode optimized)
 ├── attendance-trend-chart.tsx ✨ (Added glow effects)
 ├── department-chart.tsx ✨ (Diagonal gradients)
 └── late-arrival-chart.tsx ✨ (Brighter colors)
-\`\`\`
+```
 
 ### New Documentation
-\`\`\`
+```
 📄 README_CHARTS.md (this file)
 📄 DARK_MODE_IMPROVEMENTS.md ⭐ NEW!
 📄 COLOR_REFERENCE_CARD.md ⭐ NEW!
@@ -228,7 +228,7 @@ components/
 📄 COMPARISON.md  
 📄 COLOR_PALETTE.md
 📄 CUSTOMIZATION_GUIDE.md
-\`\`\`
+```
 
 ---
 

@@ -91,7 +91,7 @@ const computeStatusFromTimes = (employee: EmployeeData): string => {
   const hasStartTime = startMinutes !== null
 
   const GRACE_MINUTES = 5
-  const LATE_THRESHOLD_MINUTES = 120
+  const LATE_THRESHOLD_MINUTES = 240
   const ABANDONED_GAP_MINUTES = 120
 
   if (!shiftMinutes) return "Not started"

@@ -215,11 +215,11 @@ Your dark mode hover states are perfect if:
    - Verify the classes include `hover:text-foreground`
 
 4. **Restart dev server**
-   \`\`\`bash
+   ```bash
    # Stop the server (Ctrl+C)
    # Then restart:
    npm run dev
-   \`\`\`
+   ```
 
 ---
 
@@ -227,7 +227,7 @@ Your dark mode hover states are perfect if:
 
 Use this to document your testing:
 
-\`\`\`
+```
 ✅ DARK MODE HOVER TESTING REPORT
 Date: [Today's date]
 Browser: [Your browser]
@@ -244,7 +244,7 @@ Issues Found:
 2. [...]
 
 Overall Result: PASS/FAIL
-\`\`\`
+```
 
 ---
 
@@ -253,7 +253,7 @@ Overall Result: PASS/FAIL
 After all fixes, you should see:
 
 ### "Hide Charts" Button (Most Important)
-\`\`\`
+```
 Normal:  ┌─────────────────┐
          │ Hide Charts ▲   │  ← White text, dark background
          └─────────────────┘
@@ -262,7 +262,7 @@ Hover:   ┌─────────────────┐
          │ Hide Charts ▲   │  ← White text, lighter background ✨
          └─────────────────┘
               ↑ Text stays WHITE!
-\`\`\`
+```
 
 ### All Interactive Elements
 - **Readable text** at all times

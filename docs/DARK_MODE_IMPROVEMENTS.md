@@ -11,33 +11,33 @@ I've optimized all chart colors specifically for **dark mode** to be more vibran
 ### Status Colors (Brighter & More Vibrant)
 
 #### ✅ Success / On Time
-\`\`\`css
+```css
 Before: #10b981 / #34d399
 After:  #22c55e (Green-500 - brighter)
-\`\`\`
+```
 - More vibrant green that pops on dark backgrounds
 - Better visibility and energy
 
 #### ⚠️ Warning / Late  
-\`\`\`css
+```css
 Before: #f59e0b / #fbbf24
 After:  #fb923c (Orange-400 - brighter)
-\`\`\`
+```
 - Brighter orange that stands out
 - More attention-grabbing for warnings
 
 #### ❌ Error / Absent
-\`\`\`css
+```css
 Before: #ef4444 / #f87171  
 After:  #f87171 (Red-400 - already bright)
-\`\`\`
+```
 - Kept the brighter red
 - Clear alert color
 
 #### 🔶 Mild Severity
-\`\`\`css
+```css
 After: #fbbf24 (Amber-400)
-\`\`\`
+```
 - Bright amber for low-priority items
 
 ---
@@ -191,7 +191,7 @@ Don't worry! These colors still work great in light mode:
 ## 🎯 Specific Color Values Reference
 
 ### Quick Copy-Paste for Dark Mode
-\`\`\`tsx
+```tsx
 const DARK_MODE_COLORS = {
   success: "#22c55e",    // Green-500
   warning: "#fb923c",    // Orange-400
@@ -210,7 +210,7 @@ const DARK_MODE_COLORS = {
     "#14b8a6", // Teal
   ]
 }
-\`\`\`
+```
 
 ---
 

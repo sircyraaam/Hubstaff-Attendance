@@ -9,34 +9,34 @@ All colors are carefully chosen to work beautifully in both **light** and **dark
 ## Primary Chart Colors
 
 ### ✅ Success / On Time
-\`\`\`css
+```css
 Light Mode: #10b981  /* Emerald-500 */
 Dark Mode:  #34d399  /* Emerald-400 */
-\`\`\`
+```
 **Usage**: On-time attendance, positive metrics, success states
 **RGB**: rgb(16, 185, 129) / rgb(52, 211, 153)
 
 ### ⚠️ Warning / Late
-\`\`\`css
+```css
 Light Mode: #f59e0b  /* Amber-500 */
 Dark Mode:  #fbbf24  /* Amber-400 */
-\`\`\`
+```
 **Usage**: Late arrivals, warnings, moderate issues
 **RGB**: rgb(245, 158, 11) / rgb(251, 191, 36)
 
 ### ❌ Error / Absent
-\`\`\`css
+```css
 Light Mode: #ef4444  /* Red-500 */
 Dark Mode:  #f87171  /* Red-400 */
-\`\`\`
+```
 **Usage**: Absences, critical issues, errors
 **RGB**: rgb(239, 68, 68) / rgb(248, 113, 113)
 
 ### 🟠 Orange / Mild
-\`\`\`css
+```css
 Light Mode: #f97316  /* Orange-500 */
 Dark Mode:  #fb923c  /* Orange-400 */
-\`\`\`
+```
 **Usage**: Mild late arrivals, low-priority warnings
 **RGB**: rgb(249, 115, 22) / rgb(251, 146, 60)
 
@@ -45,52 +45,52 @@ Dark Mode:  #fb923c  /* Orange-400 */
 ## Department Colors (8-Color Palette)
 
 ### 1. Indigo
-\`\`\`css
+```css
 Hex: #6366f1  /* Indigo-500 */
 RGB: rgb(99, 102, 241)
-\`\`\`
+```
 
 ### 2. Violet
-\`\`\`css
+```css
 Hex: #8b5cf6  /* Violet-500 */
 RGB: rgb(139, 92, 246)
-\`\`\`
+```
 
 ### 3. Pink
-\`\`\`css
+```css
 Hex: #ec4899  /* Pink-500 */
 RGB: rgb(236, 72, 153)
-\`\`\`
+```
 
 ### 4. Teal
-\`\`\`css
+```css
 Hex: #14b8a6  /* Teal-500 */
 RGB: rgb(20, 184, 166)
-\`\`\`
+```
 
 ### 5. Amber
-\`\`\`css
+```css
 Hex: #f59e0b  /* Amber-500 */
 RGB: rgb(245, 158, 11)
-\`\`\`
+```
 
 ### 6. Cyan
-\`\`\`css
+```css
 Hex: #06b6d4  /* Cyan-500 */
 RGB: rgb(6, 182, 212)
-\`\`\`
+```
 
 ### 7. Emerald
-\`\`\`css
+```css
 Hex: #10b981  /* Emerald-500 */
 RGB: rgb(16, 185, 129)
-\`\`\`
+```
 
 ### 8. Red
-\`\`\`css
+```css
 Hex: #ef4444  /* Red-500 */
 RGB: rgb(239, 68, 68)
-\`\`\`
+```
 
 ---
 
@@ -116,20 +116,20 @@ RGB: rgb(239, 68, 68)
 All charts use gradients for a modern, polished look:
 
 ### Bar Charts
-\`\`\`tsx
+```tsx
 <linearGradient id="gradient" x1="0" y1="0" x2="0" y2="1">
   <stop offset="0%" stopColor="#10b981" stopOpacity={0.9} />
   <stop offset="100%" stopColor="#10b981" stopOpacity={0.6} />
 </linearGradient>
-\`\`\`
+```
 
 ### Pie Charts
-\`\`\`tsx
+```tsx
 <linearGradient id="pieGradient" x1="0" y1="0" x2="0" y2="1">
   <stop offset="0%" stopColor="#6366f1" stopOpacity={0.9} />
   <stop offset="100%" stopColor="#6366f1" stopOpacity={0.7} />
 </linearGradient>
-\`\`\`
+```
 
 ---
 
@@ -150,7 +150,7 @@ All charts use gradients for a modern, polished look:
 ## Quick Copy-Paste
 
 ### Import in Your Components
-\`\`\`tsx
+```tsx
 const CHART_COLORS = {
   success: { light: "#10b981", dark: "#34d399" },
   warning: { light: "#f59e0b", dark: "#fbbf24" },
@@ -168,7 +168,7 @@ const DEPARTMENT_COLORS = [
   "#10b981", // emerald
   "#ef4444", // red
 ]
-\`\`\`
+```
 
 ---
 
@@ -176,7 +176,7 @@ const DEPARTMENT_COLORS = [
 
 If you need to use these colors in regular Tailwind:
 
-\`\`\`css
+```css
 /* Success/On Time */
 bg-emerald-500 text-emerald-500 border-emerald-500
 
@@ -189,7 +189,7 @@ bg-red-500 text-red-500 border-red-500
 /* Department Colors */
 bg-indigo-500 bg-violet-500 bg-pink-500 
 bg-teal-500 bg-cyan-500 bg-emerald-500
-\`\`\`
+```
 
 ---
 
@@ -197,7 +197,7 @@ bg-teal-500 bg-cyan-500 bg-emerald-500
 
 The colors work seamlessly with your existing CSS custom properties:
 
-\`\`\`css
+```css
 :root {
   --chart-1: oklch(0.65 0.22 264);  /* Primary */
   --chart-2: oklch(0.68 0.19 150);  /* Success */
@@ -205,14 +205,14 @@ The colors work seamlessly with your existing CSS custom properties:
   --chart-4: oklch(0.78 0.16 85);   /* Warning */
   --chart-5: oklch(0.58 0.18 200);  /* Info */
 }
-\`\`\`
+```
 
 ---
 
 ## Export for Design Tools
 
 ### Figma / Sketch
-\`\`\`
+```
 Success: #10b981
 Warning: #f59e0b
 Error: #ef4444
@@ -221,7 +221,7 @@ Indigo: #6366f1
 Violet: #8b5cf6
 Pink: #ec4899
 Teal: #14b8a6
-\`\`\`
+```
 
 ### Adobe Color Palette
 [Create palette →](https://color.adobe.com/create/color-wheel)

@@ -12,20 +12,20 @@ I've thoroughly checked your entire UI and fixed all hover color issues in dark 
 **Location**: `components/ui/button.tsx`
 
 #### ❌ **Before** (BROKEN in Dark Mode)
-\`\`\`tsx
+```tsx
 outline:
   'hover:bg-accent hover:text-accent-foreground dark:hover:bg-input/50'
-\`\`\`
+```
 
 **Problem**: 
 - In dark mode, `accent-foreground` = `oklch(0.12 0.01 270)` = **VERY DARK/BLACK**
 - Combined with dark background = **black text on dark background** = UNREADABLE! ❌
 
 #### ✅ **After** (FIXED)
-\`\`\`tsx
+```tsx
 outline:
   'hover:bg-accent/20 hover:text-foreground dark:bg-input/30 dark:border-input dark:hover:bg-accent/30 dark:hover:text-foreground dark:hover:border-accent/50'
-\`\`\`
+```
 
 **Solution**:
 - Uses `text-foreground` (light text) on hover in both modes
@@ -92,23 +92,23 @@ outline:
 ### Button Variants Updated
 
 #### Outline Variant
-\`\`\`diff
+```diff
 - 'hover:bg-accent hover:text-accent-foreground'
 - 'dark:hover:bg-input/50'
 
 + 'hover:bg-accent/20 hover:text-foreground'
 + 'dark:hover:bg-accent/30 dark:hover:text-foreground'
 + 'dark:hover:border-accent/50'
-\`\`\`
+```
 
 #### Ghost Variant
-\`\`\`diff
+```diff
 - 'hover:bg-accent hover:text-accent-foreground'
 - 'dark:hover:bg-accent/50'
 
 + 'hover:bg-accent/20 hover:text-foreground'
 + 'dark:hover:bg-accent/30 dark:hover:text-foreground'
-\`\`\`
+```
 
 ---
 
@@ -156,14 +156,14 @@ All should show consistent hover behavior.
 We now use a consistent opacity approach for hover backgrounds:
 
 ### Light Mode
-\`\`\`css
+```css
 hover:bg-accent/20  /* 20% accent color */
-\`\`\`
+```
 
 ### Dark Mode
-\`\`\`css
+```css
 dark:hover:bg-accent/30  /* 30% accent color (needs to be brighter) */
-\`\`\`
+```
 
 **Why different opacities?**
 - Dark mode needs slightly more opacity to be visible
@@ -175,7 +175,7 @@ dark:hover:bg-accent/30  /* 30% accent color (needs to be brighter) */
 ## 🔍 **Technical Details**
 
 ### CSS Class Application
-\`\`\`tsx
+```tsx
 // This is how Tailwind applies the classes:
 
 // Light mode hover:
@@ -192,7 +192,7 @@ dark:hover:bg-accent/30  /* 30% accent color (needs to be brighter) */
 .hover\:text-foreground:hover {
   color: hsl(var(--foreground));
 }
-\`\`\`
+```
 
 ---
 
@@ -201,18 +201,18 @@ dark:hover:bg-accent/30  /* 30% accent color (needs to be brighter) */
 ### Button Outline - Dark Mode
 
 #### Before ❌
-\`\`\`
+```
 ┌─────────────────┐
 │ Hide Charts ▲   │  ← Black text on dark gray
 └─────────────────┘     UNREADABLE!
-\`\`\`
+```
 
 #### After ✅
-\`\`\`
+```
 ┌─────────────────┐
 │ Hide Charts ▲   │  ← White text on accent-tinted background
 └─────────────────┘     PERFECT CONTRAST!
-\`\`\`
+```
 
 ---
 
@@ -243,7 +243,7 @@ dark:hover:bg-accent/30  /* 30% accent color (needs to be brighter) */
 ## 🐛 **Common Dark Mode Pitfalls (Now Avoided)**
 
 ### ❌ Don't Do This
-\`\`\`tsx
+```tsx
 // BAD - accent-foreground is dark in dark mode
 hover:text-accent-foreground
 
@@ -252,10 +252,10 @@ dark:hover:bg-input
 
 // BAD - secondary is dark in dark mode
 dark:hover:text-secondary
-\`\`\`
+```
 
 ### ✅ Do This Instead
-\`\`\`tsx
+```tsx
 // GOOD - foreground is always light in dark mode
 hover:text-foreground
 
@@ -264,7 +264,7 @@ dark:hover:bg-accent/30
 
 // GOOD - muted-foreground is properly contrasted
 text-muted-foreground
-\`\`\`
+```
 
 ---
 
@@ -321,7 +321,7 @@ When adding new interactive elements, remember:
 - [ ] Verify on multiple browsers
 
 ### Safe Hover Classes
-\`\`\`tsx
+```tsx
 // These are safe to use:
 hover:text-foreground ✅
 hover:bg-accent/20 ✅
@@ -333,7 +333,7 @@ hover:shadow-lg ✅
 hover:text-accent-foreground ❌
 dark:hover:bg-input ❌
 hover:text-secondary ❌
-\`\`\`
+```
 
 ---
 
